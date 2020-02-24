@@ -1,6 +1,6 @@
 const express = require("express");
 const actionData = require("../data//helpers/projectModel");
-const { actionMiddleware } = require("../data/middleware/action-middleware");
+// const { actionMiddleware } = require("../data/middleware/action-middleware");
 const router = express.Router();
 
 //GET all actions
@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
 });
 
 //POST action
-router.post("/", actionMiddleware(), (req, res) => {
+router.post("/", (req, res) => {
   actionData
     .insert(req.body)
     .then(newAction => {
