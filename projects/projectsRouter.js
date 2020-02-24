@@ -17,6 +17,30 @@ router.get("/", (req, res, next) => {
     });
 });
 
+//GET projects by ID
+router.get("/:id", (req, res) => {
+  const id = req.params.id;
+
+  projectData
+    .get()
+    .then(userProject => {
+      if (!id) {
+        res.status(404).json({
+          message: "Project wit specified ID does not exist."
+        });
+      } else {
+        res.status(200).json(userProject);
+      }
+    })
+    .catch(error => {
+      console.log(error);
+      res.status(500).json({
+        error: "Project creation failed."
+      });
+    });
+});
+
+//POST projects
 router.post("/", (req, res, next) => {
   projectData
     .insert(req.body)
@@ -37,8 +61,55 @@ router.post("/", (req, res, next) => {
     });
 });
 
-router.put("/", (req, res) => {
-  projectData.update();
+//PUT(update) projects
+router.put("/:id", (req, res) => {
+  const id = req.params.id;
+  const changes = req.body;
+
+  projectData
+    .update(id, changes)
+    .then(project => {
+      if (!id) {
+        res.status(404).json({
+          message: "Project wit specified ID does not exist."
+        });
+      } else if (!changes.name || !changes.description) {
+        res.status(400).json({
+          message: "Please include name and description."
+        });
+      } else {
+        res.status(200).json(changes);
+      }
+    })
+    .catch(error => {
+      console.log(error);
+      res.status(500).json({
+        error: "Project update failed."
+      });
+    });
+});
+
+//DELETE projects
+router.delete("/:id", (req, res) => {
+  const id = req.params.id;
+
+  projectData
+    .remove(id)
+    .then(trash => {
+      if (!id) {
+        res.status(404).json({
+          message: "Project wit specified ID does not exist."
+        });
+      } else {
+        res.status(200).json(trash);
+      }
+    })
+    .catch(error => {
+      console.log(error);
+      res.status(500).json({
+        error: "Project could not be deleted. Try again."
+      });
+    });
 });
 
 module.exports = router;
