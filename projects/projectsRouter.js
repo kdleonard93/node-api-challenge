@@ -3,7 +3,7 @@ const projectData = require("../data//helpers/projectModel");
 const router = express.Router();
 
 //GET all projects
-router.get("/", (req, res, next) => {
+router.get("/", (req, res) => {
   projectData
     .get()
     .then(project => {
