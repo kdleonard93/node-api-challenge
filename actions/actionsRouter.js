@@ -1,5 +1,5 @@
 const express = require("express");
-const actionData = require("../data//helpers/projectModel");
+const actionData = require("../data/helpers/actionModel");
 // const { actionMiddleware } = require("../data/middleware/action-middleware");
 const router = express.Router();
 
