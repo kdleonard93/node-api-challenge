@@ -38,15 +38,15 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
-- [ ] Mention two parts of Express that you learned about this week.
+- [ ] Mention two parts of Express that you learned about this week. 1) Express is a popular framework for use with node. 2) Express takes a lot of the leg work out of communicating with the server.
 
-- [ ] Describe Middleware?
+- [ ] Describe Middleware? Functions that have access to the request object ( req ), the response object ( res ), and the next middleware function in the application's request-response cycle.
 
-- [ ] Describe a Resource?
+- [ ] Describe a Resource? Hardware, software, and information that can be accessed in multiple ways.
 
-- [ ] What can the API return to help clients know if a request was successful?
+- [ ] What can the API return to help clients know if a request was successful? `res.status(200).json()`
 
-- [ ] How can we partition our application into sub-applications?
+- [ ] How can we partition our application into sub-applications? Separate router folders that link to sub-applications.
 
 ## Minimum Viable Product
 
