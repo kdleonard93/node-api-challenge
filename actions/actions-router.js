@@ -1,6 +1,5 @@
 const express = require("express");
 const actionData = require("../data/helpers/actionModel");
-// const { actionMiddleware } = require("../data/middleware/action-middleware");
 const router = express.Router();
 
 //GET all actions
@@ -20,16 +19,11 @@ router.get("/", (req, res) => {
 
 //POST action
 router.post("/", (req, res) => {
-  actionData
+  if (req.body.notes && req.body.description) {
+    actionData
     .insert(req.body)
     .then(newAction => {
-      if (req.body.name && req.body.description) {
-        res.status(200).json(newAction);
-      } else {
-        res.status(400).json({
-          message: "Please include name and description."
-        });
-      }
+      res.status(200).json(newAction);
     })
     .catch(error => {
       console.log(error);
@@ -37,6 +31,11 @@ router.post("/", (req, res) => {
         error: "Project creation failed."
       });
     });
+  } else {
+    res.status(400).json({
+      message: "Please include notes and description."
+    });
+  }
 });
 
 //PUT (update) action

@@ -49,7 +49,7 @@ router.post("/", (req, res, next) => {
         res.status(200).json(newProject);
       } else {
         res.status(400).json({
-          message: "Please include name and description."
+          message: "Please include sname and description."
         });
       }
     })
